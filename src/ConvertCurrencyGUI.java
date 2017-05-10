@@ -1,9 +1,15 @@
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ylhaart
@@ -15,6 +21,21 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
      */
     public ConvertCurrencyGUI() {
         initComponents();
+
+        directionButtonGroup.add(DollarsToPoundsRadioButton);
+        directionButtonGroup.add(PoundsToDollarsRadioButton);
+
+        // default values:
+        PoundsToDollarsRadioButton.setSelected(true);
+        sign1.setText("£");
+        sign2.setText("$");
+
+//        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL,Locale.US);
+        
+//           SimpleDateFormat sdf = new SimpleDateFormat("", Locale.ITALY)
+
+//        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE;
+//        dateLabel.setText(df.format(new Date()));
     }
 
     /**
@@ -26,22 +47,142 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        directionButtonGroup = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        valueSpinner = new javax.swing.JSpinner();
+        sign1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        sign2 = new javax.swing.JLabel();
+        targetCurrencyValue = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        PoundsToDollarsRadioButton = new javax.swing.JRadioButton();
+        DollarsToPoundsRadioButton = new javax.swing.JRadioButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exercise 8.2");
+
+        jLabel1.setText("Exchange rate at:");
+
+        dateLabel.setText("jLabel2");
+
+        jLabel3.setText("is");
+
+        valueSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        sign1.setText("-");
+
+        jLabel5.setText("=");
+
+        sign2.setText("-");
+
+        targetCurrencyValue.setText("jLabel7");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setText("Direction:");
+
+        PoundsToDollarsRadioButton.setText("£ to $");
+        PoundsToDollarsRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PoundsToDollarsRadioButtonActionPerformed(evt);
+            }
+        });
+
+        DollarsToPoundsRadioButton.setText("$ to £");
+        DollarsToPoundsRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DollarsToPoundsRadioButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(PoundsToDollarsRadioButton)
+                        .addGap(71, 71, 71)
+                        .addComponent(DollarsToPoundsRadioButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PoundsToDollarsRadioButton)
+                    .addComponent(DollarsToPoundsRadioButton))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valueSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sign1)
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel5)
+                                .addGap(52, 52, 52)
+                                .addComponent(sign2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(targetCurrencyValue)))
+                        .addGap(0, 110, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateLabel)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(valueSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sign1)
+                    .addComponent(jLabel5)
+                    .addComponent(sign2)
+                    .addComponent(targetCurrencyValue))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PoundsToDollarsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoundsToDollarsRadioButtonActionPerformed
+        sign1.setText("£");
+        sign2.setText("$");
+    }//GEN-LAST:event_PoundsToDollarsRadioButtonActionPerformed
+
+    private void DollarsToPoundsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DollarsToPoundsRadioButtonActionPerformed
+        sign1.setText("$");
+        sign2.setText("£");
+    }//GEN-LAST:event_DollarsToPoundsRadioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +220,18 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton DollarsToPoundsRadioButton;
+    private javax.swing.JRadioButton PoundsToDollarsRadioButton;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.ButtonGroup directionButtonGroup;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel sign1;
+    private javax.swing.JLabel sign2;
+    private javax.swing.JLabel targetCurrencyValue;
+    private javax.swing.JSpinner valueSpinner;
     // End of variables declaration//GEN-END:variables
 }
