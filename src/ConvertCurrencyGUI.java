@@ -1,5 +1,6 @@
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,18 +28,23 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
         directionButtonGroup.add(DollarsToPoundsRadioButton);
         directionButtonGroup.add(PoundsToDollarsRadioButton);
 
-        // default values:
+        // default: poundsToDollars
         PoundsToDollarsRadioButton.setSelected(true);
+        poundsToDollarsMethod();
+    }
+
+    private void poundsToDollarsMethod() {
         sign1.setText("£");
-        sign2.setText("$");
+        selection = 0;
 
-        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, Locale.UK);
+        Integer i = (Integer) valueSpinner.getValue();
+        double d = i * poundsToDollars;
 
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd G 'at' HH:mm:ss.SSS z", Locale.US);
-        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE;
+        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+        targetCurrencyValue.setText(nf.format(d));
 
-//        dateLabel.setText(df.format(new Date()));
-//        dateLabel.setText(sdf.format(new Date()));
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, Locale.US);
+        dateLabel.setText(df.format(new Date()));
     }
 
     /**
@@ -57,7 +63,6 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
         valueSpinner = new javax.swing.JSpinner();
         sign1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        sign2 = new javax.swing.JLabel();
         targetCurrencyValue = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -74,12 +79,15 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
         jLabel3.setText("is");
 
         valueSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        valueSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                valueSpinnerStateChanged(evt);
+            }
+        });
 
         sign1.setText("-");
 
         jLabel5.setText("=");
-
-        sign2.setText("-");
 
         targetCurrencyValue.setText("jLabel7");
 
@@ -147,9 +155,7 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
                                 .addComponent(sign1)
                                 .addGap(52, 52, 52)
                                 .addComponent(jLabel5)
-                                .addGap(52, 52, 52)
-                                .addComponent(sign2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(72, 72, 72)
                                 .addComponent(targetCurrencyValue)))
                         .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -167,7 +173,6 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
                     .addComponent(valueSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sign1)
                     .addComponent(jLabel5)
-                    .addComponent(sign2)
                     .addComponent(targetCurrencyValue))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,14 +183,34 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PoundsToDollarsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoundsToDollarsRadioButtonActionPerformed
-        sign1.setText("£");
-        sign2.setText("$");
+        poundsToDollarsMethod();
     }//GEN-LAST:event_PoundsToDollarsRadioButtonActionPerformed
 
     private void DollarsToPoundsRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DollarsToPoundsRadioButtonActionPerformed
-        sign1.setText("$");
-        sign2.setText("£");
+        dollarsToPoundsMethod();
     }//GEN-LAST:event_DollarsToPoundsRadioButtonActionPerformed
+
+    private void dollarsToPoundsMethod() {
+        sign1.setText("$");
+        selection = 1;
+
+        Integer i = (Integer) valueSpinner.getValue();
+        double d = i * dollarsToPounds;
+
+        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.UK);
+        targetCurrencyValue.setText(nf.format(d));
+
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, Locale.UK);
+        dateLabel.setText(df.format(new Date()));
+    }
+
+    private void valueSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_valueSpinnerStateChanged
+        if (selection == 0) {
+            poundsToDollarsMethod();
+        } else {
+            dollarsToPoundsMethod();
+        }
+    }//GEN-LAST:event_valueSpinnerStateChanged
 
     /**
      * @param args the command line arguments
@@ -221,7 +246,9 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
             }
         });
     }
-
+    int selection;
+    double poundsToDollars = 1.2942;
+    double dollarsToPounds = 0.772678102;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton DollarsToPoundsRadioButton;
     private javax.swing.JRadioButton PoundsToDollarsRadioButton;
@@ -233,7 +260,6 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel sign1;
-    private javax.swing.JLabel sign2;
     private javax.swing.JLabel targetCurrencyValue;
     private javax.swing.JSpinner valueSpinner;
     // End of variables declaration//GEN-END:variables
