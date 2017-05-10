@@ -1,9 +1,11 @@
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,12 +32,13 @@ public class ConvertCurrencyGUI extends javax.swing.JFrame {
         sign1.setText("£");
         sign2.setText("$");
 
-//        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL,Locale.US);
-        
-//           SimpleDateFormat sdf = new SimpleDateFormat("", Locale.ITALY)
+        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, Locale.UK);
 
-//        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE;
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd G 'at' HH:mm:ss.SSS z", Locale.US);
+        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE;
+
 //        dateLabel.setText(df.format(new Date()));
+//        dateLabel.setText(sdf.format(new Date()));
     }
 
     /**
